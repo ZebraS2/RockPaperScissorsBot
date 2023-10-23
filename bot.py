@@ -2,6 +2,7 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
+from keyboards.set_menu import set_main_menu
 from config_data.config import Config, load_config
 from handlers import other_handlers, user_handlers
 
@@ -19,6 +20,8 @@ async def main():
 
     bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp = Dispatcher()
+
+    await set_main_menu(bot)
 
     dp.include_router(user_handlers.router)
     dp.include_router(other_handlers.router)
